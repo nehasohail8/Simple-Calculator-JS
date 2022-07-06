@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<style>
+
+    body{
+        background-image: url("6192816.jpg");
+    }
+    h{
+        font-size: x-large;
+        text-align: center;
+        margin-left: 45%;
+        background-color: rgb(238, 160, 108);
+        padding: 10px;
+    }
+
+    h1{
+        width: 80%;
+        margin-left: 10%;
+        border-radius: 10px;
+        border-radius:30px;
+        border-style: solid;
+        border-color: rgb(34, 122, 255);
+
+    }
+    .calculator{
+        margin-top: 30px;
+        border-style: solid;
+        border-color: rgb(52, 174, 245);
+        border-width: 8px;
+        width: 35%;
+        padding: 20px;
+        text-align: center;
+        margin-left: 30%;
+        background-color: white;
+        
+    }
+
+    button {
+        background-color: rgb(209, 208, 208);
+        margin: 3px;
+        padding: 10px;
+        padding-right: 40px;
+        border-radius: 10px;
+        color: rgb(0, 0, 0);
+        box-shadow: 40px white;
+        font-size: larger;
+        border-width: 0;
+        cursor: pointer;
+    }
+
+    .arith > button{
+        background-color: rgb(239, 163, 101);
+        color: white;
+    }
+    .equal > button{
+        background-color: rgb(0, 126, 228);
+        color: white;
+    }
+
+    button:hover{
+        background-color: rgb(186, 179, 179);
+    }
+
+    .equal >button:hover{
+        background-color: rgb(16, 89, 198);
+    }
+    
+    .arith >button:hover{
+        background-color: rgb(193, 93, 17);
+    }
+
+    h1:hover{
+        background-color: rgb(230, 235, 245);
+    }
+
+    .AC{
+        background-color: rgb(227, 69, 69);
+        color: white;
+    }
+
+    .AC:hover{
+        background-color: rgba(174, 15, 15, 0.888);
+    }
+</style>
+<html>
+    <head>
+        <title>Calculator</title>
+        <script>
+
+            let first=0;
+            let add=0;
+            let curr="";
+            let exponential=1;
+            let flag=1;
+
+            function reset(){
+                first=0;
+                add=0;
+                exponential=1;
+                curr='';
+                flag=1;
+                document.querySelector('h1').innerHTML= 0;
+                
+            }
+
+         
+
+            function addvalue(value){
+
+            
+                add= add*(10**exponential) + value;
+                document.querySelector('h1').innerHTML= add;
+             
+                if ( flag == 1) {
+                    first=add; 
+                }
+             
+            
+                
+
+            }
+
+            function check(action){
+                curr=action;
+
+                if (flag === 1){flag=0;}
+            
+                    if (curr === 'sum')
+                   {  document.querySelector('h1').innerHTML= '+';
+                   sum(); }
+                   else if (curr === 'minus')
+                   {  document.querySelector('h1').innerHTML= '-';
+                   minus(); }
+                   else if (curr === 'multiply')
+                   {  document.querySelector('h1').innerHTML= '*';
+                   multiply(); }
+                   else if ( curr === 'divide')
+                   { document.querySelector('h1').innerHTML= '÷';
+                   divide();}
+                   else if ( curr === 'percent')
+                   { document.querySelector('h1').innerHTML= '%';
+                   }
+                   else if ( curr === 'root')
+                   { document.querySelector('h1').innerHTML= '√';
+                   }
+                   else if ( curr === 'power')
+                   { document.querySelector('h1').innerHTML= 'pow';
+                   power();
+                   }
+
+                
+
+            }
+            
+            function sum(){
+                add=0;
+            }
+
+            function minus(){
+                add=0;
+            }
+
+            function multiply(){
+                if ( first === 0){first=1;}
+                add=0;
+            }
+            function divide(){
+                add=0;
+            }
+            function power(){
+                add=0;
+            }
+
+            function display(){
+                if (curr === 'sum'){
+                    first=first+add;
+                    document.querySelector('h1').innerHTML= first;
+                }
+                if (curr === 'minus'){
+                    first=first-add;
+                    document.querySelector('h1').innerHTML= first;
+                }
+                if (curr === 'multiply'){
+                    first=first*add;
+                    document.querySelector('h1').innerHTML= first;
+                }
+                if (curr === 'divide'){
+                    if ( add === 0){ document.querySelector('h1').innerHTML= "ERROR";}
+                    else{
+                    first=first/add;
+                    document.querySelector('h1').innerHTML= first;
+                    }
+                }
+
+                if (curr === 'percent'){
+                    first=first/100;
+                    document.querySelector('h1').innerHTML= first;
+                }
+
+                if ( curr === 'root')
+                   { 
+                    first=first**0.5;
+                    document.querySelector('h1').innerHTML= first;
+                   }
+                   if ( curr === 'power')
+                   { 
+                    first=first**add;
+                    document.querySelector('h1').innerHTML= first;
+                   }   
+
+                add=0;
+            }
+        </script>
+    </head>
+    <body>
+        <h>Calculator</h>
+    <div class="calculator">
+        <h6 style="color:rgb(54, 19, 207);">*click number and then the desired operation*</h6>
+        <h1>0</h1>
+        <table>
+            <tr>
+                <div class="arith">
+                <button onclick="check('sum')">+</button>
+                <button onclick="check('minus')">-</button>
+                <button onclick="check('multiply')">x</button>
+                <button onclick="check('divide')">÷</button>
+                </div>
+                <div class="arith">
+                    <button onclick="check('percent')">%</button>
+                    <button onclick="check('root')">√</button>
+                    <button onclick="check('power')">pow</button>
+                </div>
+    
+
+            </tr>
+            <br>
+            <tr>
+                <button onclick="addvalue(7)">7</button>
+                <button onclick="addvalue(8)">8</button>
+                 <button onclick="addvalue(9)">9</button>
+            </tr>
+            <br>
+            <tr>
+                <button onclick="addvalue(4)">4</button>
+                <button onclick="addvalue(5)">5</button>
+                <button onclick="addvalue(6)">6</button>
+            </tr>
+            <br>
+            <tr>
+                <button onclick="addvalue(1)">1</button>
+                <button onclick="addvalue(2)">2</button>
+                <button onclick="addvalue(3)">3</button>
+            </tr>
+            <br>
+            <tr>
+               
+                <button onclick="addvalue(0)">0</button>
+                <button class="AC" onclick="reset()">AC</button>
+                <span class="equal">
+                <button onclick="display()">=</button>
+                </span>
+            </th></tr>
+
+
+        </table>
+
+    </div>
+
+    </body>
+</html>
